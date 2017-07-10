@@ -1,6 +1,7 @@
 export interface Address {
     title: any,
-    fullName: string,
+    name: string,
+    postcode: string,
     line1: string,
     line2: string,
     county: string,
