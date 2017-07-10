@@ -3,7 +3,7 @@ import { NgModule, Optional, SkipSelf, ModuleWithProviders } from '@angular/core
 
 
 // Services
-
+import { AddressesService } from './services/addresses/addresses.service';
 
 
 
@@ -22,6 +22,7 @@ export class CoreModule {
             ngModule: CoreModule,
             providers: [
                 // Providers
+                AddressesService
             ]
         };
     }
