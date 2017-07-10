@@ -2,6 +2,7 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { HeaderComponent } from './layout/header/header.component';
 
 
 @NgModule({
@@ -9,10 +10,11 @@ import { HttpModule } from '@angular/http';
         FormsModule,
         HttpModule
     ],
-    declarations: [],
+    declarations: [HeaderComponent],
     exports: [
         FormsModule,
-        HttpModule
+        HttpModule,
+        HeaderComponent
     ]
 })
 export class SharedModule {
