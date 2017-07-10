@@ -39,19 +39,15 @@ export class AddressesService {
             this.http.post('/api/addresses', body)
             .map(this.extractData)
             .catch(this.handleError).subscribe( add => {
-                if (add) {
                   this.dataStore.addresses.push();
                   this.getAddresses();
-                }
             });
   }
   public deleteAddress(id: number) {
           this.http.delete(`/api/addresses/${id}`)
             .map(this.extractData)
             .catch(this.handleError).subscribe( address => {
-                if (address) {
                   this.getAddresses();
-                }
             });
   }
   public updateAddress(id: number, address: Address) {
@@ -59,9 +55,7 @@ export class AddressesService {
         this.http.put(`/api/addresses/${id}`, body)
             .map(this.extractData)
             .catch(this.handleError).subscribe( add => {
-                if (add) {
                   this.getAddresses();
-                }
             });
   }
   private extractData(res: Response) {
