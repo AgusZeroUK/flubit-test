@@ -1,7 +1,8 @@
 <div class="main">
     <div class="container">
+        <h2 class="f-link" (click)="onCreate()">Add a new address</h2>
         <div layout-gt-sm="row" layout-align="start center">
-            <div flex-xs flex-sm flex-gt-sm="50" *ngFor="let address of addresses$ | async" layout-margin layout-padding>
+            <div flex-xs flex-sm flex-gt-sm="50" *ngFor="let address of addresses$ | async" layout-margin>
                 <div class="address-box" layout="column" layout-align="start" layout-margin layout-padding>
                     <div layout="row">
                         <span>{{address.title}} {{address.name}}</span>
@@ -22,20 +23,21 @@
                         </div>
                         <div flex="10"></div>
                         <div flex="60">
-                            <button (click)="selectMainAddress(address)">deliver here</button>
+                            <button class="btn btn-primary btn-lg btn-block btn-yellow" (click)="selectMainAddress(address)">deliver here</button>
                         </div>
                     </div>
                 </div>
             </div>
             <div flex-xs flex-sm flex-gt-sm="50" layout-margin layout-padding>
-                <div class="address-box" layout="column" layout-align="start" layout-margin layout-padding>
-                    <button (click)="onCreate()">new address</button>
+                <div class="address-box grey" layout="column" layout-align="start" layout-margin layout-padding>
+                    <h4>New delivery address</h4>
+                    <button class="btn btn-default btn-lg btn-block" (click)="onCreate()">new address</button>
                 </div>
             </div>
         </div>
         <form *ngIf="shouldDisplayNew || shouldDisplayEdit" [formGroup]="form">
-            <h1 *ngIf="shouldDisplayNew">Add New Adress</h1>
-            <h1 *ngIf="shouldDisplayEdit">Edit Adress</h1>
+            <h3 class="f-link" *ngIf="shouldDisplayNew">Add new shipping address</h3>
+            <h3 class="f-link" *ngIf="shouldDisplayEdit">Edit shipping address</h3>
             <div class="row">
                 <div class="form-group col-sm-6" [ngClass]="{'has-error': form.controls.title.invalid && submitted}">
                     <label for="title" class="control-label">* Title</label>
@@ -43,7 +45,7 @@
                       <option value="" disabled selected>Select Title...</option>
                       <option *ngFor="let title of titles" [value]="title">{{title}}</option>
                     </select>
-                    <p class="form-error" *ngIf="form.controls.title.invalid && submitted" style="text-align:center;">
+                    <p class="form-error" *ngIf="form.controls.title.invalid && submitted">
                         Title Required
                     </p>
                 </div>
@@ -52,7 +54,7 @@
                 <div class="form-group col-sm-6" [ngClass]="{'has-error': form.controls.name.invalid && submitted}">
                     <label for="postcode">* Full name</label>
                     <input type="text" formControlName="name" class="form-control" id="name" placeholder="Full Name">
-                    <p class="form-error" *ngIf="form.controls.name.invalid && submitted" style="text-align:center;">
+                    <p class="form-error" *ngIf="form.controls.name.invalid && submitted">
                         Full Name Required
                     </p>
                 </div>
@@ -61,7 +63,7 @@
                 <div class="form-group col-sm-6" [ngClass]="{'has-error': form.controls.line1.invalid && submitted}">
                     <label for="postcode">* Address Line 1</label>
                     <input type="text" formControlName="line1" class="form-control" id="line1" placeholder="Address Line 1">
-                    <p class="form-error" *ngIf="form.controls.line1.invalid && submitted" style="text-align:center;">
+                    <p class="form-error" *ngIf="form.controls.line1.invalid && submitted">
                         Address Line 1 Required
                     </p>
                 </div>
@@ -76,7 +78,7 @@
                 <div class="form-group col-sm-6" [ngClass]="{'has-error': form.controls.town.invalid && submitted}">
                     <label for="postcode">* Town/City</label>
                     <input type="text" formControlName="town" class="form-control" id="name" placeholder="Town">
-                    <p class="form-error" *ngIf="form.controls.town.invalid && submitted" style="text-align:center;">
+                    <p class="form-error" *ngIf="form.controls.town.invalid && submitted">
                         Town Required
                     </p>
                 </div>
@@ -105,11 +107,17 @@
                     </p>
                 </div>
             </div>
-            <div *ngIf="shouldDisplayNew" layout="row" layout-align="end center" layout-margin>
-                <button (click)="onNewSubmit()" class="" flex-xs flex-sm flex-gt-sm="25">Add Address</button>
+            <div *ngIf="shouldDisplayNew" class="row">
+                <div class="col-sm-6">
+                    <button (click)="onNewSubmit()" class="btn btn-primary btn-lg btn-yellow">Add Address</button>
+                </div>
+
             </div>
-            <div *ngIf="shouldDisplayEdit" layout="row" layout-align="end center" layout-margin>
-                <button (click)="onEditSubmit()" class="" flex-xs flex-sm flex-gt-sm="25">Edit</button>
+            <div *ngIf="shouldDisplayEdit" class="row" layout-align="start center">
+                <div class="col-sm-6">
+                    <button (click)="onEditSubmit()" class="btn btn-primary btn-lg btn-yellow">Edit</button>
+                </div>
+
             </div>
         </form>
     </div>

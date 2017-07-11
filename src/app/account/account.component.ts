@@ -38,6 +38,7 @@ export class AccountComponent implements OnInit {
   onCreate() {
     this.clearForm();
     this.shouldDisplayNew = true;
+    this.shouldDisplayEdit = false;
   }
 
   onEdit(id: number) {
@@ -56,6 +57,7 @@ export class AccountComponent implements OnInit {
               phone: new FormControl(this.addressSelectedToEdit.phone, Validators.required),
       });
       this.shouldDisplayEdit = true;
+      this.shouldDisplayNew = false;
     }
 
   }
@@ -76,6 +78,7 @@ export class AccountComponent implements OnInit {
       this._addressesService.createAddress(addressAux);
       this.submitted = false;
       this.shouldDisplayNew = false;
+      this.shouldDisplayEdit = false;
       this.clearForm();
     }
   }
@@ -97,11 +100,15 @@ export class AccountComponent implements OnInit {
       this.addressSelectedToEdit = null;
       this.submitted = false;
       this.shouldDisplayEdit = false;
+      this.shouldDisplayNew = false;
       this.clearForm();
     }
   }
 
   onRemove(id: number) {
+    this.clearForm();
+    this.shouldDisplayNew = false;
+    this.shouldDisplayEdit = false;
     this._addressesService.deleteAddress(id);
   }
 
