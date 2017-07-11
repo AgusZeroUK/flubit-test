@@ -34,6 +34,10 @@ export class AddressesService {
             });
 
   }
+
+  public getAddress(id: number) {
+     return this.dataStore.addresses.find(address => address.id === id);
+  }
   public createAddress(address: Address) {
             const body = address;
             this.http.post('/api/addresses', body)
